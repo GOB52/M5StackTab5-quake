@@ -18,6 +18,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 // quakedef.h -- primary header for client
+#ifndef QUAKEGENERIC_QUAKEDEF_H
+#define QUAKEGENERIC_QUAKEDEF_H
 
 #define	QUAKE_GAME			// as opposed to utilities
 
@@ -299,3 +301,4 @@ extern	cvar_t	chase_active;
 void Chase_Init (void);
 void Chase_Reset (void);
 void Chase_Update (void);
+#endif

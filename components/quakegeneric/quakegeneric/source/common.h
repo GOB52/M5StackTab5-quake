@@ -18,6 +18,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 // comndef.h  -- general definitions
+#ifndef QUAKEGENERIC_COMMON_H
+#define QUAKEGENERIC_COMMON_H
+
+#if !defined(__cplusplus)
 
 #if !defined BYTE_DEFINED
 typedef unsigned char 		byte;
@@ -28,6 +32,14 @@ typedef unsigned char 		byte;
 #undef false
 
 typedef enum {false, true}	qboolean;
+
+#else
+
+#include <cstdint>
+using byte = uint8_t;
+using qboolean = bool;
+
+#endif
 
 //============================================================================
 
@@ -181,3 +193,4 @@ void COM_LoadCacheFile (char *path, struct cache_user_s *cu);
 extern	struct cvar_s	registered;
 
 extern qboolean		standard_quake, rogue, hipnotic;
+#endif

@@ -1,3 +1,16 @@
+# M5StackTab5-quake
+
+This is a version of the Quake 1 engine that runs on the [M5Stack Tab5](https://docs.m5stack.com/en/core/Tab5).  
+Forked from https://github.com/espressif/esp32-quake
+
+## Required
+- [M5Unified](https://github.com/m5stack/M5Unified)
+- [M5GFX](https://github.com/m5stack/M5GFX)
+
+
+---
+# Original below
+
 This is a version of the Quake 1 engine that runs on the ESP32-P4-Function-EV-Board 
 when coupled with the ESP32-P4-HMI-SubBoard that contains a 1024x600 MIPI LCD. 
 

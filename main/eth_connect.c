@@ -155,6 +155,8 @@ void ethernet_connect(void)
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &got_ip_event_handler, NULL));
 
     // Start Ethernet driver state machine
-    ESP_ERROR_CHECK(esp_eth_start(eth_handle));
+    if(eth_handle) {
+        ESP_ERROR_CHECK(esp_eth_start(eth_handle));
+    }
 }
 
