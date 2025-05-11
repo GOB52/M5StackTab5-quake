@@ -1,12 +1,55 @@
-# M5StackTab5-quake
+# M5StackTab5-quake (WIP/作業中)
 
+Quake 1 engine を [M5Stack Tab5](https://docs.m5stack.com/en/core/Tab5) 上で動かしたバージョンです。  
+https://github.com/espressif/esp32-quake からフォークされています。
+
+## 必須
+- ESP-IDF framework
+- [M5Unified](https://github.com/m5stack/M5Unified)
+- [M5GFX](https://github.com/m5stack/M5GFX)
+
+## 入力
+### USB keyboard
+USB-A にキーボードを繋いでください。 (Low speed USB には対応していません)
+
+### Virtual buttons
+画面下部に仮想ボタンが最低限搭載されています。
+
+## 未対応
+- 音の再生
+- ネットワーク接続
+
+## 既知の問題
+- 仮想ボタンは機能が足りていません
+- 電源入れ直しで、画面に何もかかれない場合があります
+  1. [env:screen\_revive] をアップロードしてください
+  1. その後 [env:tab5-quake] をアップロードしてください
+
+---
 This is a version of the Quake 1 engine that runs on the [M5Stack Tab5](https://docs.m5stack.com/en/core/Tab5).  
 Forked from https://github.com/espressif/esp32-quake
 
 ## Required
+- ESP-IDF framework
 - [M5Unified](https://github.com/m5stack/M5Unified)
 - [M5GFX](https://github.com/m5stack/M5GFX)
 
+## Input operation
+### USB keyboard
+Connect the keyboard to USB-A. (NOTICE: Low speed connection not supported)
+
+### Virtual buttons
+Virtual buttons at the bottom of the screen for minimal operation.
+
+## Unsupported
+- Audio playback
+- Network connection
+
+## Known Issues
+- Virtual buttons lack functionality
+- Screen drawing does not occur when the power switch is turned back on
+  1. Please upload platformio [env:screen\_revive]
+  1. Then upload [env:tab5-quake] again
 
 ---
 # Original below
