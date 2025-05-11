@@ -25,6 +25,7 @@
 #include "usb_hid.h"
 #include "hid_keys.h"
 #include "quakekeys.h"
+#include "esp_log.h"
 
 //Mapping between USB HID keys and Quake engine keys
 const uint16_t key_conv_tab[]={
@@ -110,18 +111,25 @@ const uint16_t key_conv_tab[]={
 	[KEY_EQUAL]='=',
 };
 
+extern int touch_input(int *down, int *key);
+
 static int mouse_dx=0, mouse_dy=0;
 
 int QG_GetKey(int *down, int *key) {
 	*key=0;
 	*down=0;
-	hid_ev_t ev;
+
+        // Touch
+        if(touch_input(down, key)) { return 1; }
+
+        // Keyboard
+        hid_ev_t ev;
 	int ret=usb_hid_receive_hid_event(&ev);
 	if (!ret) return 0;
 	if (ev.type==HIDEV_EVENT_KEY_DOWN || ev.type==HIDEV_EVENT_KEY_UP) {
 		*down=(ev.type==HIDEV_EVENT_KEY_DOWN)?1:0;
 		if (ev.key.keycode < sizeof(key_conv_tab)/sizeof(key_conv_tab[0])) {
-			*key=key_conv_tab[ev.key.keycode];
+                    *key=key_conv_tab[ev.key.keycode];
 		}
 		return 1;
 	} else if (ev.type==HIDEV_EVENT_MOUSE_BUTTONDOWN || ev.type==HIDEV_EVENT_MOUSE_BUTTONUP) {
