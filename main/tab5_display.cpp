@@ -17,10 +17,9 @@ static int fps_ticks=0;
 static int64_t start_time_fps_meas;
 
 static auto& display = M5.Display;
-static const char TAG[] = "M5G";
+static const char TAG[] = "TAB5D";
 
 extern void draw_touchpad(M5GFX* out);
-
 
 extern "C" void QG_DrawFrame(void *pixels) {
     xSemaphoreTake(drawing_mux, portMAX_DELAY);
@@ -38,13 +37,13 @@ extern "C" void QG_DrawFrame(void *pixels) {
 }
 
 static void draw_task(void *param) {
-    //        uint16_t *rgbfb=(uint16_t*)heap_caps_calloc(QUAKEGENERIC_RES_X*QUAKEGENERIC_RES_Y, sizeof(uint16_t), MALLOC_CAP_DMA|MALLOC_CAP_SPIRAM);
-    uint16_t *rgbfb=(uint16_t*)heap_caps_calloc(QUAKEGENERIC_RES_X*QUAKEGENERIC_RES_Y, sizeof(uint16_t), MALLOC_CAP_INTERNAL | MALLOC_CAP_DMA);
+    uint16_t *rgbfb=(uint16_t*)heap_caps_calloc(QUAKEGENERIC_RES_X*QUAKEGENERIC_RES_Y, sizeof(uint16_t), MALLOC_CAP_DMA|MALLOC_CAP_SPIRAM);
+    //uint16_t *rgbfb=(uint16_t*)heap_caps_calloc(QUAKEGENERIC_RES_X*QUAKEGENERIC_RES_Y, sizeof(uint16_t), MALLOC_CAP_INTERNAL | MALLOC_CAP_DMA);
     assert(rgbfb);
 
     LGFX_Sprite sprite(&display);
     sprite.setBuffer(rgbfb, QUAKEGENERIC_RES_X, QUAKEGENERIC_RES_Y, 16);
-    sprite.setPivot(QUAKEGENERIC_RES_X * 0.5f, QUAKEGENERIC_RES_Y * 0.5f);
+    sprite.setPivot(QUAKEGENERIC_RES_X * 0.5f + 0.5f, QUAKEGENERIC_RES_Y * 0.5f + 0.5f);
 
     float scale = (float)display.width() / (float)QUAKEGENERIC_RES_X;
     int32_t draw_w = QUAKEGENERIC_RES_X * scale;
@@ -68,7 +67,7 @@ static void draw_task(void *param) {
         xSemaphoreGive(drawing_mux);
 
         //do a draw to trigger fb flip
-        sprite.pushRotateZoom(draw_w/2, draw_y/2, 0.0f, scale, scale);
+        sprite.pushRotateZoom(draw_w/2, 1280- draw_y/2 - 420, 0.0f, scale, scale);
 
         // virutal key pad
         draw_touchpad(&display);
@@ -137,7 +136,9 @@ extern "C" void display_quit() {
 
 extern "C" void display_init() {
     display.startWrite();
-
+    display.fillScreen(0);
+    display.fillRect(0, display.height() - 400,display.width(), 400, TFT_DARKGRAY);
+    
     drawing_mux=xSemaphoreCreateMutex();
     xTaskCreatePinnedToCore(draw_task, "draw", 4096*2, NULL, 3, &draw_task_handle, 1);
 }

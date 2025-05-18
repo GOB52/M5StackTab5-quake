@@ -1,25 +1,13 @@
 // Porting for M5Stack Tab5 by GOB (X:@GOB_52_GOB)
-#include <stdio.h>
-#include <stdlib.h>
+#include <M5Unified.h>
 #include <assert.h>
-#include <stdint.h>
-#include <string.h>
-#include "bsp/esp-bsp.h"
-#include "esp_timer.h"
 #include "quakegeneric.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/semphr.h"
-#include "quakekeys.h"
 #include "eth_connect.h"
-#include "font_8x16.h"
 #include "input.h"
 #include "display.h"
 #include "driver/sdmmc_host.h"
 #include "esp_vfs_fat.h"
 #include "sdmmc_cmd.h"
-//#include "quakedef.h"
-#include <M5Unified.h>
 
 static void mount_sdcard(void) {
     sdmmc_host_t host = SDMMC_HOST_DEFAULT();
