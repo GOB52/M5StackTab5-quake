@@ -28,12 +28,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //for comparison with e.g. https://thandor.net/benchmark/33
 //in game, press tilde, then 'timedemo demo3'
-#define QUAKEGENERIC_RES_X (320)
-#define QUAKEGENERIC_RES_Y (200)
 
-
-//#define QUAKEGENERIC_RES_X 512
-//#define QUAKEGENERIC_RES_Y 300
+//#define QUAKEGENERIC_RES_X (320)
+//#define QUAKEGENERIC_RES_Y (200)
+#define QUAKEGENERIC_RES_X 512
+#define QUAKEGENERIC_RES_Y 300
 
 #define QUAKEGENERIC_JOY_MAX_AXES 6
 #define QUAKEGENERIC_JOY_AXIS_X 0

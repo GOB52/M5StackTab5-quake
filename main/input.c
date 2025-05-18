@@ -111,7 +111,9 @@ const uint16_t key_conv_tab[]={
 	[KEY_EQUAL]='=',
 };
 
+extern bool tab5_input_init();
 extern int touch_input(int *down, int *key);
+
 
 static int mouse_dx=0, mouse_dy=0;
 
@@ -163,6 +165,7 @@ void QG_GetMouseMove(int *x, int *y) {
 
 void input_init() {
 	xTaskCreatePinnedToCore(usb_hid_task, "usbhid", 4096, NULL, 4, NULL, 1);
+        tab5_input_init();
 }
 
 

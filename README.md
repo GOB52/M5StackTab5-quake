@@ -1,58 +1,102 @@
-# M5StackTab5-quake (WIP/作業中)
+# M5StackTab5-quake
 
 Quake 1 engine を [M5Stack Tab5](https://docs.m5stack.com/en/core/Tab5) 上で動かしたバージョンです。  
 https://github.com/espressif/esp32-quake からフォークされています。
 
 ## 必須
 - ESP-IDF framework
-- [M5Unified](https://github.com/m5stack/M5Unified)
-- [M5GFX](https://github.com/m5stack/M5GFX)
+- [M5Unified](https://github.com/m5stack/M5Unified) 0.2.7 or later
+- [M5GFX](https://github.com/m5stack/M5GFX) 0.2.8 or later
 
 ## 入力
 ### USB keyboard
 USB-A にキーボードを繋いでください。 (Low speed USB には対応していません)
 
 ### Virtual buttons
-画面下部に仮想ボタンが最低限搭載されています。
+画面下部に仮想ボタンが最低限搭載されています。  
+キーアサインは以下を前提としています。([source](main/tab5_input.cpp) 参照)
+
+|Action|Key|
+|---|---|
+|Forward| Up arrow|
+|Backpedal| Dwon arrow|
+|Turn left|Left arrow|
+|Turn right|Right arrow|
+|Step left| , |
+|Step right| . |
+|Look up| a |
+|Look down| z |
+|Attack| CTRL |
+|Jump/Swim up| ENTER |
+|Center view| END |
+|Swim up| d |
+|Swim down| c|
+|Change weapon| / |
+
+![tab5_quake_buttons_0](https://github.com/user-attachments/assets/985e253e-55b2-4a30-ac1e-6df3a97196ff)
+```
+[a][ ][d]  [END]     [ESC]
+[ ]   [ ]             [/]
+[z][ ][c]        [,][.]
+             [ENTER][CTRL]
+```
+
 
 ## 未対応
 - 音の再生
 - ネットワーク接続
 
-## 既知の問題
-- 仮想ボタンは機能が足りていません
-- 電源入れ直しで、画面に何もかかれない場合があります
-  1. [env:screen\_revive] をアップロードしてください
-  1. その後 [env:tab5-quake] をアップロードしてください
-
 ---
+# M5StackTab5-quake
+
 This is a version of the Quake 1 engine that runs on the [M5Stack Tab5](https://docs.m5stack.com/en/core/Tab5).  
 Forked from https://github.com/espressif/esp32-quake
 
 ## Required
 - ESP-IDF framework
-- [M5Unified](https://github.com/m5stack/M5Unified)
-- [M5GFX](https://github.com/m5stack/M5GFX)
+- [M5Unified](https://github.com/m5stack/M5Unified) 0.2.7 or later
+- [M5GFX](https://github.com/m5stack/M5GFX) 0.2.8 or later
 
 ## Input operation
 ### USB keyboard
 Connect the keyboard to USB-A. (NOTICE: Low speed connection not supported)
 
 ### Virtual buttons
-Virtual buttons at the bottom of the screen for minimal operation.
+Virtual buttons at the bottom of the screen for minimal operation.  
+The key assignments assume the following (See also [source](main/tab5_input.cpp))
+
+|Action|Key|
+|---|---|
+|Forward| Up arrow|
+|Backpedal| Dwon arrow|
+|Turn left|Left arrow|
+|Turn right|Right arrow|
+|Step left| , |
+|Step right| . |
+|Look up| a |
+|Look down| z |
+|Attack| CTRL |
+|Jump/Swim up| ENTER |
+|Center view| END |
+|Swim up| d |
+|Swim down| c|
+|Change weapon| / |
+
+![tab5_quake_buttons_0](https://github.com/user-attachments/assets/985e253e-55b2-4a30-ac1e-6df3a97196ff)
+```
+[a][ ][d]  [END]     [ESC]
+[ ]   [ ]             [/]
+[z][ ][c]        [,][.]
+             [ENTER][CTRL]
+```
 
 ## Unsupported
 - Audio playback
 - Network connection
 
-## Known Issues
-- Virtual buttons lack functionality
-- Screen drawing does not occur when the power switch is turned back on
-  1. Please upload platformio [env:screen\_revive]
-  1. Then upload [env:tab5-quake] again
 
 ---
-# Original below
+# Original below (esp32-quake)
 
 This is a version of the Quake 1 engine that runs on the ESP32-P4-Function-EV-Board 
 when coupled with the ESP32-P4-HMI-SubBoard that contains a 1024x600 MIPI LCD. 

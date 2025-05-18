@@ -1,5 +1,5 @@
 idf_component_register(SRCS "tab5_main.cpp" "usb_hid.c" "audio.c" "cd_cue.c"
-					"eth_connect.c" "font_8x16.c" "input.c" "tab5_input.cpp" "tab5_display.cpp"
+					"eth_connect.c" "font_8x16.c" "input.c" "tab5_input.cpp" "tab5_display.cpp" "btn0.cpp" "btn1.cpp"
                     INCLUDE_DIRS ".")
 
 #hack: otherwise audio.c is not linked
